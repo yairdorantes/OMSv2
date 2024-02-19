@@ -5,11 +5,11 @@ import {
   faClone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
+
 import { useState } from "react";
 import toast from "react-hot-toast";
 import OrderResume from "../../../components/OrderResume";
+import { Button, Fade, Modal, Typography } from "@mui/material";
 
 const Table = () => {
   const [modalOrderInfo, setModalOrderInfo] = useState(false);
@@ -34,9 +34,21 @@ const Table = () => {
     navigator.clipboard.writeText(value);
   };
 
+  const [open, setOpen] = useState(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+    setModalOrderInfo(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setModalOrderInfo(false);
+  };
+
   return (
     <div className=" mt-14">
-      <Modal
+      {/* <Modal
         classNames={{
           overlay: "customOverlay",
           modal: "customModal",
@@ -46,6 +58,29 @@ const Table = () => {
         center
       >
         <OrderResume />
+      </Modal> */}
+      <Modal
+        open={modalOrderInfo}
+        onClose={handleClose}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Fade in={modalOrderInfo}>
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              background: "white",
+              padding: "20px",
+              borderRadius: "5px",
+              width: "100%",
+            }}
+          >
+            <OrderResume />
+          </div>
+        </Fade>
       </Modal>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full  text-xs  text-black">
