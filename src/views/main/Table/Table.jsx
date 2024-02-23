@@ -9,11 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import OrderResume from "../../../components/OrderResume";
-import { Button, Fade, Modal, Typography } from "@mui/material";
+import { Checkbox, Menu, Modal } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 const Table = () => {
-  const [modalOrderInfo, setModalOrderInfo] = useState(false);
-  const data = new Array(50).fill(null);
+  console.log("table rendered");
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const data = new Array(30).fill(null);
 
   const ArrowsIcon = () => {
     return (
@@ -34,80 +37,56 @@ const Table = () => {
     navigator.clipboard.writeText(value);
   };
 
-  const [open, setOpen] = useState(true);
-
-  const handleOpen = () => {
-    setOpen(true);
-    setModalOrderInfo(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setModalOrderInfo(false);
-  };
-
   return (
-    <div className=" mt-14">
-      {/* <Modal
-        classNames={{
-          overlay: "customOverlay",
-          modal: "customModal",
+    <div className=" mt-4 ">
+      <Modal
+        size="calc(100vw - 3rem)"
+        opened={opened}
+        onClose={close}
+        centered
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          // blur: 3,
         }}
-        open={modalOrderInfo}
-        onClose={() => setModalOrderInfo(false)}
-        center
       >
         <OrderResume />
-      </Modal> */}
-      <Modal
-        open={modalOrderInfo}
-        onClose={handleClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
-      >
-        <Fade in={modalOrderInfo}>
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              background: "white",
-              padding: "20px",
-              borderRadius: "5px",
-              width: "100%",
-            }}
-          >
-            <OrderResume />
-          </div>
-        </Fade>
       </Modal>
+      <div className="flex flex-wrap gap-1 text-sm mb-4">
+        {" "}
+        <div>
+          <span className="font-semibold">Pagina:</span> 1 de 1,
+        </div>
+        <div>
+          <span className="font-semibold">Total Filtrado:</span> 97,
+        </div>
+        <div>
+          <span className="font-semibold">Total:</span> 899,
+        </div>
+        <div>
+          <span className="font-semibold">Filas seleccioandas:</span> 25
+        </div>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full  text-xs  text-black">
+        <table className="w-full  text-xs  ">
           <thead className="text-[14px] cursor-pointer  select-none  text-gray-700 capitalize bg-gray-50">
             <tr className="">
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 bg-white z-20 left-0  px-2 py-3"
+                className="sticky border border-slate-300 top-0 bg-white z-20 left-0  px-2 py-2"
               >
                 <div className="flex justify-center items-center">
-                  <input
-                    readOnly
-                    type="checkbox"
-                    // checked="checked"
-                    className="checkbox checkbox-info checkbox-sm"
-                  />
+                  <Checkbox />
                 </div>
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-20 left-9 bg-white px-2 py-3"
+                className="sticky border border-slate-300 top-0 z-20 left-9 bg-white px-2 py-2"
               >
                 Inf.
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-2 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-2 py-2"
               >
                 <div className="flex justify-center items-center">
                   Or.
@@ -118,7 +97,7 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-5 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-5 py-2"
               >
                 <div className="flex items-center justify-center">
                   Id
@@ -129,13 +108,13 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-2 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-2 py-2"
               >
                 <div className="flex items-center justify-center" />
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Estatus
@@ -146,7 +125,7 @@ const Table = () => {
               </th>{" "}
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Cliente
@@ -157,7 +136,7 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Paqueteria
@@ -168,7 +147,7 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Qty
@@ -179,7 +158,7 @@ const Table = () => {
               </th>{" "}
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Total
@@ -190,7 +169,7 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-3"
+                className="sticky border border-slate-300 top-0 z-10 bg-white px-6 py-2"
               >
                 <div className="flex items-center justify-center">
                   Fecha
@@ -201,7 +180,7 @@ const Table = () => {
               </th>
               <th
                 scope="col"
-                className="sticky top-0 border border-slate-300 right-0 z-20 bg-white px-1 py-3"
+                className="sticky top-0 border border-slate-300 right-0 z-20 bg-white px-1 py-2"
               >
                 <div className="flex items-center justify-center">Op.</div>
               </th>
@@ -214,21 +193,17 @@ const Table = () => {
                 className="even:bg-white odd:bg-gray-200  text-center border-b"
               >
                 <td className="px-2 py-2 bg-white sticky left-0 border border-slate-300">
-                  <input
-                    readOnly
-                    type="checkbox"
-                    // checked="checked"
-                    className="checkbox checkbox-info checkbox-sm"
-                  />
+                  <Checkbox />
                 </td>
+
                 <td
                   scope="row"
-                  onClick={() => setModalOrderInfo(true)}
-                  className="px-2 cursor-pointer sticky left-9 bg-white border py-2 font-medium text-gray-900 "
+                  onClick={open}
+                  className="px-2 cursor-pointer  sticky left-9 bg-white border py-2  text-gray-900 "
                 >
                   <FontAwesomeIcon
                     icon={faCirclePlus}
-                    className="w-6 h-6 text-success"
+                    className="w-6 h-6 text-teal-500"
                   />
                 </td>
                 <td className="px-2 py-2 border border-slate-300 ">
@@ -268,25 +243,29 @@ const Table = () => {
                   17-02-2024 08:48:10 PM
                 </td>
                 <td className="sticky right-0 bg-white px-1 py-2 border border-slate-300">
-                  <div className="dropdown dropdown-left">
-                    <div tabIndex={0} role="button" className="">
+                  <Menu
+                    transitionProps={{
+                      transition: "rotate-right",
+                      duration: 150,
+                    }}
+                    position="left-start"
+                  >
+                    <Menu.Target>
                       <FontAwesomeIcon
                         icon={faSquareCaretDown}
                         className="w-6 h-6 text-blue-600"
                       />
-                    </div>
-                    <ul
-                      tabIndex={0}
-                      className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                    >
-                      <li>
-                        <a>Item 1</a>
-                      </li>
-                      <li>
-                        <a>Item 2</a>
-                      </li>
-                    </ul>
-                  </div>
+                    </Menu.Target>
+                    <Menu.Dropdown offset={8}>
+                      {/* Menu items */}
+                      <Menu.Item
+                      // leftSection={}
+                      // disabled
+                      >
+                        <div className="">example</div>
+                      </Menu.Item>
+                    </Menu.Dropdown>
+                  </Menu>
                 </td>
               </tr>
             ))}

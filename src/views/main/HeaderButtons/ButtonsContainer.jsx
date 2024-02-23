@@ -49,10 +49,10 @@ const ButtonsContainer = () => {
           <div
             key={i}
             onClick={button.onClick}
-            className="bg-gray-100 text-gray-500 transition-all hover:bg-blue-700 hover:text-white cursor-pointer select-none flex justify-center items-center flex-col border border-gray-300 shadow-md rounded-2xl h-16 w-20"
+            className="bg-gray-100 text-gray-500 transition-all hover:bg-blue-700 hover:text-white cursor-pointer select-none flex justify-center items-center flex-col border border-gray-300 shadow-md rounded-2xl h-16 w-20 "
           >
             <div>
-              <FontAwesomeIcon icon={button.icon} className="w-6 h-6" />
+              <FontAwesomeIcon icon={button.icon} className="w-5 h-5" />
             </div>
             <div className="text-xs">{button.name}</div>
           </div>

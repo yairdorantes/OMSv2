@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    // './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    // "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -8,8 +15,7 @@ export default {
       },
     },
   },
-  daisyui: {
-    themes: ["light", "dark", "cupcake"],
-  },
-  plugins: [require("daisyui")],
+  darkMode: "class",
+
+  plugins: [],
 };

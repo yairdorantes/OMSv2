@@ -18,7 +18,7 @@ const PillFilters = () => {
       <ToggleStatus />
       <div
         id="clen-filters"
-        className="rounded-full transition-all hover:bg-error text-gray-500 hover:text-white  flex items-center justify-center border w-9   h-9 "
+        className="rounded-full transition-all hover:bg-red-500 text-gray-500 hover:text-white  flex items-center justify-center border w-9   h-9 "
       >
         <FontAwesomeIcon
           icon={faTrashAlt}
